@@ -9,6 +9,9 @@ class Enemy:
         self.radius = ENEMY_RADIUS
         self.speed = 2
 
+        self.image = pygame.image.load("/home/zago/PycharmProjects/Planetary-Defense/Assets/Meteor.png")
+        self.image = pygame.transform.scale(self.image, (40, 40))
+
     def move_toward(self, target_x, target_y):
         dx = target_x - self.x
         dy = target_y - self.y
@@ -19,9 +22,4 @@ class Enemy:
             self.y += dy / dist * self.speed
 
     def draw(self, screen):
-        pygame.draw.circle(
-            screen,
-            RED,
-            (int(self.x), int(self.y)),
-            self.radius
-        )
+        screen.blit(self.image, (self.x - 20, self.y - 20))
