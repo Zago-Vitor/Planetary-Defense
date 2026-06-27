@@ -17,9 +17,11 @@ player = Player(WIDTH // 2, HEIGHT // 2)
 
 enemies = []
 bullets = []
+
 score = 0
 spawn_timer = 0
-
+spawn_delay = 60
+difficulty_timer = 0
 font = pygame.font.SysFont(None, 36)
 
 
@@ -69,7 +71,14 @@ while running:
             shoot(mx, my)
 
     spawn_timer += 1
-    if spawn_timer >= 60:
+    difficulty_timer += 1
+
+    if difficulty_timer >= 600:  # a cada 10 segundos
+        if spawn_delay > 15:
+            spawn_delay -= 5
+        difficulty_timer = 0
+
+    if spawn_timer >= spawn_delay:
         spawn_enemy()
         spawn_timer = 0
 
