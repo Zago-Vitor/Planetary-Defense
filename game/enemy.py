@@ -23,3 +23,4 @@ class Enemy:
 
     def draw(self, screen):
         screen.blit(self.image, (self.x - 20, self.y - 20))
+
